@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 from flask import Flask, render_template, request
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
@@ -32,15 +34,6 @@ def process():
 
     print("Mariya: "+bot_response)
     return render_template('index.html',user_input=user_input,bot_response=bot_response)
-
-# @app.route('/jokes', methods=['POST','GET'])
-# def jokes():
-#     user_joke = request.form['user_jokes']
-#     saveFile = open('base/dataset.txt', 'a')
-#     saveFile.write(user_joke + "\n")
-#     saveFile.close()
-
-#     return render_template('jokes.html')
 
 if __name__=='__main__':
 	app.run(debug=True,port=5002)
