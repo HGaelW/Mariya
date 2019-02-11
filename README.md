@@ -11,6 +11,6 @@ i need to allow it not to tell the joke to someone who added it (user's account 
 2. install a virtual environment
 3. install flask
 4. clone this repository into that directory
-5. run pip install -r requirements.txt <!--this is to install all the dependencies-->
+5. run "pip install -r requirements.txt" in your terminal/bash #this is to install all the dependencies
 
 now you have the app ready!
