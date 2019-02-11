@@ -9,8 +9,8 @@ bot = ChatBot ('Mariya')
 
 trainer = ListTrainer(bot)
 
-for knowledeg in os.listdir('base'):
-	BotMemory = open('base/'+ knowledeg, 'r').readlines()
+for knowledge in os.listdir('base'):
+	BotMemory = open('base/'+ knowledge, 'r').readlines()
 	trainer.train(BotMemory)
 
 #Now we generate routes
@@ -22,13 +22,27 @@ def index():
 
 @app.route('/process',methods=['POST']) #this is for us to get user input
 def process():
-	user_input=request.form['user_input']
-	bot_response=bot.get_response(user_input)
-	bot_response=str(bot_response)
-	print("Mariya: "+bot_response)
-	return render_template('index.html',user_input=user_input,
-		bot_response=bot_response
-		)
+    user_input = request.form['user_input']
+    bot_response = bot.get_response(user_input)
+    bot_response = str(bot_response)
+
+    saveFile = open('base/dataset.txt', 'a')
+    saveFile.write(user_input + "\n")
+    saveFile.close()
+
+
+
+    print("Mariya: "+bot_response)
+    return render_template('index.html',user_input=user_input,bot_response=bot_response)
+
+# @app.route('/jokes', methods=['POST','GET'])
+# def jokes():
+#     user_joke = request.form['user_jokes']
+#     saveFile = open('base/dataset.txt', 'a')
+#     saveFile.write(user_joke + "\n")
+#     saveFile.close()
+
+#     return render_template('jokes.html')
 
 if __name__=='__main__':
 	app.run(debug=True,port=5002)
