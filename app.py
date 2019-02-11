@@ -25,12 +25,10 @@ def process():
     user_input = request.form['user_input']
     bot_response = bot.get_response(user_input)
     bot_response = str(bot_response)
-
+    #here we save user input to the dataset, unfortunately it slowed down the app
     saveFile = open('base/dataset.txt', 'a')
     saveFile.write(user_input + "\n")
     saveFile.close()
-
-
 
     print("Mariya: "+bot_response)
     return render_template('index.html',user_input=user_input,bot_response=bot_response)
